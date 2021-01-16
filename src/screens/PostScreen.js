@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react'
-import {View, Text, StyleSheet, Image, ScrollView, Alert} from 'react-native'
+import React from 'react'
+import {View, StyleSheet, Image, ScrollView, Alert} from 'react-native'
 import {DATA} from "../data";
 import {THEME} from "../theme";
 import {AppButton} from "../components/ui/AppButton";
