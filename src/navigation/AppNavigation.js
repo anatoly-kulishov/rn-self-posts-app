@@ -1,44 +1,59 @@
 import * as React from 'react';
-import {Platform} from "react-native";
-import {THEME} from "../theme";
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
+import {createDrawerNavigator} from '@react-navigation/drawer';
 import {NavigationContainer} from "@react-navigation/native";
-import {AppTabBarIcon} from "../components/ui/AppTabBarIcon";
-import {TabOneNavigator} from "./tabs/TabOneNavigator";
-import {TabTwoNavigator} from "./tabs/TabTwoNavigator";
+import {Ionicons} from "@expo/vector-icons";
+import {THEME} from "../theme";
+import {PostNavigation} from "./components/PostNavigation";
+import {AboutNavigation} from "./components/AboutNavigation";
+import {CreateNavigation} from "./components/CreateNavigation";
 
-const BottomTab = Platform.OS === 'android' ? createMaterialBottomTabNavigator() : createBottomTabNavigator();
+const Drawer = createDrawerNavigator();
 
 export const AppNavigation = () => {
     return (
         <NavigationContainer>
-            <BottomTab.Navigator
-                shifting={true}
-                barStyle={{backgroundColor: THEME.MAIN_COLOR}}
-                tabBarOptions={{
-                    activeTintColor: Platform.OS === 'android' ? '#fff' : THEME.MAIN_COLOR,
-                    labelStyle: {margin: 3},
+            <Drawer.Navigator
+                drawerStyle={{paddingTop: 5}}
+                drawerContentOptions={{
+                    activeTintColor: THEME.MAIN_COLOR,
+                    labelStyle: {fontFamily: 'open-bold',}
                 }}>
-                <BottomTab.Screen
-                    name="Main"
-                    component={TabOneNavigator}
-                    options={{
-                        tabBarLabel: 'Все',
-                        tabBarIcon: ({color}) => <AppTabBarIcon name="ios-albums" color={color}/>,
-                    }}
-                />
-                <BottomTab.Screen
-                    name="Booked"
-                    component={TabTwoNavigator}
-                    options={{
-                        tabBarLabel: 'Избранное',
-                        tabBarIcon: ({color}) => <AppTabBarIcon name="ios-star" color={color}/>,
-                    }}
-                />
-            </BottomTab.Navigator>
+                <Drawer.Screen name="Главная"
+                               component={PostNavigation}
+                               options={{
+                                   drawerIcon: ({focused, size}) => (
+                                       <Ionicons name="ios-home"
+                                                 size={size}
+                                                 color={focused ? THEME.MAIN_COLOR : '#000'}
+                                       />
+                                   ),
+                               }}/>
+
+                <Drawer.Screen name="О приложении"
+                               component={AboutNavigation}
+                               options={{
+                                   drawerIcon: ({focused, size}) => (
+                                       <Ionicons name="ios-information-circle-sharp"
+                                                 size={size}
+                                                 color={focused ? THEME.MAIN_COLOR : '#000'}
+                                       />
+                                   ),
+                               }}/>
+
+                <Drawer.Screen name="Новый пост"
+                               component={CreateNavigation}
+                               options={{
+                                   drawerIcon: ({focused, size}) => (
+                                       <Ionicons name="ios-create"
+                                                 size={size}
+                                                 color={focused ? THEME.MAIN_COLOR : '#000'}
+                                       />
+                                   ),
+                               }}/>
+            </Drawer.Navigator>
         </NavigationContainer>
     )
 }
+
 
 

@@ -1,18 +1,19 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import {View, StyleSheet} from 'react-native'
+import {AppTextBold} from "../components/ui/AppTextBold";
 
 export const CreateScreen = ({}) => {
-  return (
-    <View style={styles.center}>
-      <Text>CreateScreen</Text>
-    </View>
-  )
+    return (
+        <View style={styles.center}>
+            <AppTextBold>Создать пост</AppTextBold>
+        </View>
+    )
 }
 
 const styles = StyleSheet.create({
-  center: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  }
+    center: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
+    }
 })
