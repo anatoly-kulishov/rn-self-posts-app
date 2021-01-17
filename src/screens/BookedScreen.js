@@ -1,6 +1,6 @@
 import React from 'react'
-import {DATA} from "../data";
 import {PostList} from "../components/PostList";
+import {useDispatch, useSelector} from "react-redux";
 
 export const BookedScreen = ({navigation}) => {
 
@@ -12,5 +12,7 @@ export const BookedScreen = ({navigation}) => {
         })
     }
 
-    return <PostList data={DATA.filter(post => post.booked)} onOpen={openPostHandler}/>
+    const allBookedPosts = useSelector(state => state.post.bookedPosts);
+
+    return <PostList data={allBookedPosts} onOpen={openPostHandler}/>
 }

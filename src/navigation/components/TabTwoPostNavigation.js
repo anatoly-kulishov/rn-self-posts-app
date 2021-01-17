@@ -4,29 +4,20 @@ import {HeaderButtons, Item} from "react-navigation-header-buttons";
 import {navigationScreenOptions} from "../navigationOptions";
 import {StackPostScreen} from "../../components/StackPostScreen";
 import {AppHeaderIcon} from "../../components/ui/AppHeaderIcon";
-import {MainScreen} from "../../screens/MainScreen";
+import {BookedScreen} from "../../screens/BookedScreen";
 
-const TabOneStack = createStackNavigator();
+const TabTwoStack = createStackNavigator();
 
-export const TabOneNavigator = ({navigation}) => {
+export const TabTwoPostNavigation = ({navigation, route}) => {
     return (
-        <TabOneStack.Navigator
+        <TabTwoStack.Navigator
             screenOptions={navigationScreenOptions}>
-            <TabOneStack.Screen
-                name="Main"
-                component={MainScreen}
+            <TabTwoStack.Screen
+                name="Booked"
+                component={BookedScreen}
                 options={
                     {
-                        title: 'Главная',
-                        headerRight: () => (
-                            <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
-                                <Item
-                                    title='Take photo'
-                                    iconName='ios-camera'
-                                    onPress={() => navigation.navigate('Create')}
-                                />
-                            </HeaderButtons>
-                        ),
+                        title: 'Избранное',
                         headerLeft: () => (
                             <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
                                 <Item
@@ -39,7 +30,7 @@ export const TabOneNavigator = ({navigation}) => {
                     }
                 }
             />
-            {StackPostScreen(TabOneStack)}
-        </TabOneStack.Navigator>
+            {StackPostScreen(TabTwoStack)}
+        </TabTwoStack.Navigator>
     );
 }

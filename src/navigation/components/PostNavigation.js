@@ -1,9 +1,9 @@
 import * as React from 'react';
 import {THEME} from "../../theme";
 import {Platform} from "react-native";
-import {TabOneNavigator} from "./TabOneNavigator";
+import {TabOnePostNavigation} from "./TabOnePostNavigation";
 import {AppTabBarIcon} from "../../components/ui/AppTabBarIcon";
-import {TabTwoNavigator} from "./TabTwoNavigator";
+import {TabTwoPostNavigation} from "./TabTwoPostNavigation";
 import {createMaterialBottomTabNavigator} from "@react-navigation/material-bottom-tabs";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 
@@ -20,7 +20,7 @@ export const PostNavigation = () => {
             }}>
             <BottomTab.Screen
                 name="Main"
-                component={TabOneNavigator}
+                component={TabOnePostNavigation}
                 options={{
                     tabBarLabel: 'Все посты',
                     tabBarIcon: ({color}) => <AppTabBarIcon name="ios-albums" color={color}/>,
@@ -28,7 +28,7 @@ export const PostNavigation = () => {
             />
             <BottomTab.Screen
                 name="Booked"
-                component={TabTwoNavigator}
+                component={TabTwoPostNavigation}
                 options={{
                     tabBarLabel: 'Избранное',
                     tabBarIcon: ({color}) => <AppTabBarIcon name="ios-star" color={color}/>,

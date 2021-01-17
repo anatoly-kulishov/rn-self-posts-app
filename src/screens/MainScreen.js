@@ -1,6 +1,7 @@
-import React from 'react'
-import {DATA} from "../data";
+import React, {useEffect} from 'react'
+import {useDispatch, useSelector} from "react-redux";
 import {PostList} from "../components/PostList";
+import {loadPosts} from "../store/actions/post";
 
 export const MainScreen = ({navigation}) => {
 
@@ -12,5 +13,12 @@ export const MainScreen = ({navigation}) => {
         })
     }
 
-    return <PostList data={DATA} onOpen={openPostHandler}/>
+    const dispatch = useDispatch();
+    const allPosts = useSelector(state => state.post.allPosts);
+
+    useEffect(() => {
+        dispatch(loadPosts())
+    }, [dispatch])
+
+    return <PostList data={allPosts} onOpen={openPostHandler}/>
 }
