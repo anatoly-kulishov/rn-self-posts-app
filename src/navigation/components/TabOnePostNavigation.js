@@ -23,7 +23,7 @@ export const TabOnePostNavigation = ({navigation, route}) => {
                                 <Item
                                     title='Take photo'
                                     iconName='ios-camera'
-                                    onPress={() => navigation.navigate('Create')}
+                                    onPress={() => navigation.navigate('Новый пост')}
                                 />
                             </HeaderButtons>
                         ),
