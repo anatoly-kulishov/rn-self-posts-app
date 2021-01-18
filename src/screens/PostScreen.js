@@ -51,21 +51,26 @@ export const PostScreen = ({navigation, route}) => {
         <ScrollView>
             <Image style={styles.image}
                    source={{uri: post.img}}/>
-            <View style={styles.textWrap}>
-                <AppText style={styles.title}>{post.text}</AppText>
+            <View style={styles.container}>
+                <View style={styles.textWrap}>
+                    <AppText style={styles.title}>{post.text}</AppText>
+                </View>
+                <AppButton color={THEME.DANGER_COLOR}
+                           onPress={removeHandler}>Удалить пост</AppButton>
             </View>
-            <AppButton color={THEME.DANGER_COLOR}
-                       onPress={removeHandler}>Удалить</AppButton>
         </ScrollView>
     )
 }
 
 const styles = StyleSheet.create({
+    container: {
+        paddingHorizontal: 20
+    },
     image: {
         width: '100%',
         height: 200
     },
     textWrap: {
-        padding: 10
+        marginVertical: 20
     }
 })
