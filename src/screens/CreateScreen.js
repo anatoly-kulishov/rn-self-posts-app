@@ -3,13 +3,13 @@ import {View, TextInput, ScrollView, TouchableWithoutFeedback, Button, Keyboard,
 import {useDispatch} from "react-redux";
 import {THEME} from "../theme";
 import {AppText} from "../components/ui/AppText";
-import {AppButton} from "../components/ui/AppButton";
 import {PhotoPicker} from "../components/PhotoPicker";
+import {addPost} from "../store/actions/post";
 
 export const CreateScreen = ({navigation, route}) => {
     const dispatch = useDispatch();
     const [text, setText] = useState('');
-    const imgRef = useRef();
+    const imgRef = useRef(null);
 
     const saveHandler = () => {
         const post = {
@@ -19,7 +19,7 @@ export const CreateScreen = ({navigation, route}) => {
             booked: false
         }
         dispatch(addPost(post))
-        navigation.navigate('Главная')
+        navigation.navigate('Main')
     }
 
     const photoPickHandler = uri => {

@@ -1,30 +1,40 @@
-import React, {useEffect, useCallback} from 'react'
+import React, {useEffect, useCallback, useLayoutEffect} from 'react'
 import {View, StyleSheet, Image, ScrollView, Alert, Button} from 'react-native'
-import {DATA} from "../data";
 import {THEME} from "../theme";
 import {AppButton} from "../components/ui/AppButton";
 import {AppText} from "../components/ui/AppText";
 import {useDispatch, useSelector} from "react-redux";
-import {toggleBooked} from "../store/actions/post";
+import {HeaderButtons, Item} from "react-navigation-header-buttons";
+import {AppHeaderIcon} from "../components/ui/AppHeaderIcon";
+import {toggleBooked, removePost} from '../store/actions/post'
 
 export const PostScreen = ({navigation, route}) => {
     const dispatch = useDispatch()
     const postId = route.params.postId
-    const post = DATA.find(p => p.id === postId)
+    const post = useSelector(state => state.post.allPosts.find(p => p.id === postId))
+    const booked = useSelector(state => state.post.bookedPosts.some(post => post.id === postId))
 
-    // const booked = useSelector(state => state.post.bookedPosts.some(post => post.id === postId))
-
-    // useEffect(() => {
-    //     navigation.setParams({booked})
-    // }, [booked])
+    useEffect(() => {
+        navigation.setParams({booked})
+    }, [booked])
 
     const toggleHandler = useCallback(() => {
-        dispatch(toggleBooked(postId))
-    }, [dispatch, postId])
+        dispatch(toggleBooked(post))
+    }, [dispatch, post])
 
-    // useEffect(() => {
-    //     navigation.setOptions(() => console.log('useEffect'))
-    // }, [toggleHandler])
+
+    useLayoutEffect(() => {
+        navigation.setOptions({
+            headerRight: () => (
+                <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
+                    <Item title='Booked'
+                          iconName={booked ? 'ios-star' : 'ios-star-outline'}
+                          onPress={toggleHandler}
+                    />
+                </HeaderButtons>
+            ),
+        });
+    }, [booked]);
 
     const removeHandler = () => {
         Alert.alert(
@@ -38,14 +48,20 @@ export const PostScreen = ({navigation, route}) => {
                 {
                     text: "Удалить",
                     style: "destructive",
-                    onPress: async () => {
-                        console.log('Deleted')
+                    onPress() {
+                        navigation.navigate('Main')
+                        dispatch(removePost(postId))
                     }
                 }
             ],
             {cancelable: false}
         )
     }
+
+    if (!post) {
+        return null
+    }
+
 
     return (
         <ScrollView>

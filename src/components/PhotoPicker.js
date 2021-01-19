@@ -1,9 +1,8 @@
 import React, {useState, useEffect} from 'react';
-import {View, Image, StyleSheet} from "react-native";
+import {View, Image, Button, StyleSheet} from "react-native";
 import * as ImagePicker from 'expo-image-picker';
-import {AppButton} from "./ui/AppButton";
 
-export const PhotoPicker = (props, {onPick}) => {
+export const PhotoPicker = ({onPick}) => {
     const [image, setImage] = useState(null)
 
     useEffect(() => {
@@ -21,22 +20,22 @@ export const PhotoPicker = (props, {onPick}) => {
         let result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ImagePicker.MediaTypeOptions.All,
             allowsEditing: true,
-            aspect: [16, 9],
+            aspect: [4, 3],
             quality: 1,
         });
 
-        console.log(result);
+        // console.log(result);
 
         if (!result.cancelled) {
             setImage(result.uri);
-            onPick(img.uri)
         }
+        onPick(result.uri)
     };
 
     return (
-        <View style={{...styles.default, ...props.style}}>
-            {image && <Image style={styles.image} source={{uri: image}}/>}
-            <AppButton onPress={pickImage}>Загрузить фото</AppButton>
+        <View style={styles.default}>
+            {image && <Image source={{uri: image}} style={styles.image}/>}
+            <Button title="Загрузить фото" onPress={pickImage}/>
         </View>
     )
 }

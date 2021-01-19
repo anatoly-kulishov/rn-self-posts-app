@@ -2,9 +2,9 @@ import React from 'react';
 import {createStackNavigator} from "@react-navigation/stack";
 import {HeaderButtons, Item} from "react-navigation-header-buttons";
 import {navigationScreenOptions} from "../navigationOptions";
-import {StackPostScreen} from "../../components/StackPostScreen";
 import {AppHeaderIcon} from "../../components/ui/AppHeaderIcon";
 import {MainScreen} from "../../screens/MainScreen";
+import {PostScreen} from "../../screens/PostScreen";
 
 const TabOneStack = createStackNavigator();
 
@@ -39,7 +39,12 @@ export const TabOnePostNavigation = ({navigation, route}) => {
                     }
                 }
             />
-            {StackPostScreen(TabOneStack)}
+            <TabOneStack.Screen name="Post"
+                              component={PostScreen}
+                              options={({route}) => ({
+                                      title: `Пост от ${new Date(route.params.date).toLocaleDateString()}`,
+                                  }
+                              )}/>
         </TabOneStack.Navigator>
     );
 }
