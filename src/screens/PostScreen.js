@@ -9,14 +9,14 @@ import {AppHeaderIcon} from "../components/ui/AppHeaderIcon";
 import {toggleBooked, removePost} from '../store/actions/post'
 
 export const PostScreen = ({navigation, route}) => {
-    const dispatch = useDispatch()
-    const postId = route.params.postId
-    const post = useSelector(state => state.post.allPosts.find(p => p.id === postId))
-    const booked = useSelector(state => state.post.bookedPosts.some(post => post.id === postId))
+    const dispatch = useDispatch();
+    const postId = route.params.postId;
+    const post = useSelector(state => state.post.allPosts.find(p => p.id === postId));
+    const booked = useSelector(state => state.post.bookedPosts.some(post => post.id === postId));
 
-    useEffect(() => {
-        navigation.setParams({booked})
-    }, [booked])
+    // useEffect(() => {
+    //     navigation.setParams({booked})
+    // }, [booked])
 
     const toggleHandler = useCallback(() => {
         dispatch(toggleBooked(post))

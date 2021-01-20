@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react'
+import React, {useRef, useState, useEffect} from 'react'
 import {View, TextInput, ScrollView, TouchableWithoutFeedback, Button, Keyboard, StyleSheet} from 'react-native';
 import {useDispatch} from "react-redux";
 import {THEME} from "../theme";
@@ -18,9 +18,14 @@ export const CreateScreen = ({navigation, route}) => {
             img: imgRef.current,
             booked: false
         }
+
         dispatch(addPost(post))
         navigation.navigate('Main')
     }
+
+    useEffect(() => {
+        console.log('Update')
+    });
 
     const photoPickHandler = uri => {
         imgRef.current = uri
