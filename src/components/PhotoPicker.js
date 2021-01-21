@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react';
-import {View, Image, Button, StyleSheet} from "react-native";
+import {View, Image, StyleSheet} from "react-native";
 import * as ImagePicker from 'expo-image-picker';
+import {AppButton} from "./ui/AppButton";
+import {THEME} from "../theme";
 
 export const PhotoPicker = ({onPick}) => {
     const [image, setImage] = useState(null)
@@ -28,14 +30,24 @@ export const PhotoPicker = ({onPick}) => {
 
         if (!result.cancelled) {
             setImage(result.uri);
+            onPick(result.uri)
         }
-        onPick(result.uri)
     };
+
+    const resetImage = async () => {
+        setImage(null)
+    }
 
     return (
         <View style={styles.default}>
             {image && <Image source={{uri: image}} style={styles.image}/>}
-            <Button title="Загрузить фото" onPress={pickImage}/>
+            <View style={styles.buttonWrap}>
+                <AppButton onPress={pickImage}>Загрузить фото</AppButton>
+            </View>
+            <View style={styles.buttonWrap}>
+                <AppButton onPress={resetImage}
+                           color={THEME.DANGER_COLOR}>Удалить фото</AppButton>
+            </View>
         </View>
     )
 }
@@ -47,6 +59,9 @@ const styles = StyleSheet.create({
     image: {
         width: '100%',
         height: 200,
+        marginBottom: 15
+    },
+    buttonWrap: {
         marginBottom: 15
     }
 })

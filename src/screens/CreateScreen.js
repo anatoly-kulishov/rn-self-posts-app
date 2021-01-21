@@ -18,14 +18,14 @@ export const CreateScreen = ({navigation, route}) => {
             img: imgRef.current,
             booked: false
         }
-
         dispatch(addPost(post))
+        setText('')
         navigation.navigate('Main')
     }
 
-    useEffect(() => {
-        console.log('Update')
-    });
+    // useEffect(() => {
+    //     console.log('Update')
+    // });
 
     const photoPickHandler = uri => {
         imgRef.current = uri
@@ -63,10 +63,13 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 16,
         textAlign: 'center',
-        marginBottom: 20
+        marginBottom: 30
     },
     textarea: {
-        marginBottom: 20
+        marginBottom: 20,
+        padding: 8,
+        borderBottomWidth: 1,
+        borderColor: THEME.MAIN_COLOR
     },
     photoPicker: {
         marginVertical: 15
