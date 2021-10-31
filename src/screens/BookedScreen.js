@@ -1,6 +1,6 @@
 import React from 'react'
 import {PostList} from "../components/PostList";
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 
 export const BookedScreen = ({navigation}) => {
 

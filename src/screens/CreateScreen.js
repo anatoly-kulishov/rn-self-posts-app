@@ -23,10 +23,6 @@ export const CreateScreen = ({navigation, route}) => {
         navigation.navigate('Main')
     }
 
-    // useEffect(() => {
-    //     console.log('Update')
-    // });
-
     const photoPickHandler = uri => {
         imgRef.current = uri
     }

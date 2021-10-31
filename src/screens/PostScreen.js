@@ -1,5 +1,5 @@
-import React, {useEffect, useCallback, useLayoutEffect} from 'react'
-import {View, StyleSheet, Image, ScrollView, Alert, Button} from 'react-native'
+import React, {useCallback, useLayoutEffect} from 'react'
+import {View, StyleSheet, Image, ScrollView, Alert} from 'react-native'
 import {THEME} from "../theme";
 import {AppButton} from "../components/ui/AppButton";
 import {AppText} from "../components/ui/AppText";
@@ -14,14 +14,9 @@ export const PostScreen = ({navigation, route}) => {
     const post = useSelector(state => state.post.allPosts.find(p => p.id === postId));
     const booked = useSelector(state => state.post.bookedPosts.some(post => post.id === postId));
 
-    // useEffect(() => {
-    //     navigation.setParams({booked})
-    // }, [booked])
-
     const toggleHandler = useCallback(() => {
         dispatch(toggleBooked(post))
     }, [dispatch, post])
-
 
     useLayoutEffect(() => {
         navigation.setOptions({
@@ -29,8 +24,7 @@ export const PostScreen = ({navigation, route}) => {
                 <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
                     <Item title='Booked'
                           iconName={booked ? 'ios-star' : 'ios-star-outline'}
-                          onPress={toggleHandler}
-                    />
+                          onPress={toggleHandler}/>
                 </HeaderButtons>
             ),
         });
@@ -61,7 +55,6 @@ export const PostScreen = ({navigation, route}) => {
     if (!post) {
         return null
     }
-
 
     return (
         <ScrollView>

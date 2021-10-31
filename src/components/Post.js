@@ -4,11 +4,9 @@ import {AppText} from "./ui/AppText";
 
 export const Post = ({post, onOpen}) => {
     return (
-        <TouchableOpacity activeOpacity={.7}
-                          onPress={() => onOpen(post)}>
+        <TouchableOpacity activeOpacity={.7} onPress={() => onOpen(post)}>
             <View style={styles.post}>
-                <ImageBackground style={styles.image}
-                                 source={{uri: post.img}}>
+                <ImageBackground style={styles.image} source={{uri: post.img}}>
                     <View style={styles.textWrap}>
                         <AppText style={styles.title}>{new Date(post.date).toLocaleDateString()}</AppText>
                     </View>

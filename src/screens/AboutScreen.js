@@ -3,7 +3,7 @@ import {View, StyleSheet} from 'react-native'
 import {AppText} from "../components/ui/AppText";
 import {AppTextBold} from "../components/ui/AppTextBold";
 
-export const AboutScreen = ({}) => {
+export const AboutScreen = () => {
     return (
         <View style={styles.center}>
             <AppText>Лучшее приложение для личных заметок.</AppText>

@@ -8,16 +8,13 @@ import {THEME} from "./src/theme";
 import {AppNavigation} from "./src/navigation/AppNavigation";
 
 export default function App() {
-    const [isReady, setIsReady] = useState(false)
+    const [isReady, setIsReady] = useState(false);
 
     if (!isReady) {
-        return (
-            <AppLoading
-                startAsync={bootstrap}
-                onFinish={() => setIsReady(true)}
-                onError={err => console.log(err)}
-            />
-        )
+        return <AppLoading
+            startAsync={bootstrap}
+            onFinish={() => setIsReady(true)}
+            onError={err => console.log(err)}/>
     }
 
     return (

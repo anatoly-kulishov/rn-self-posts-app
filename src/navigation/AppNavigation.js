@@ -16,7 +16,7 @@ export const AppNavigation = () => {
                 drawerStyle={{paddingTop: 5}}
                 drawerContentOptions={{
                     activeTintColor: THEME.MAIN_COLOR,
-                    labelStyle: {fontFamily: 'open-bold',}
+                    labelStyle: {fontFamily: 'open-bold'}
                 }}>
                 <Drawer.Screen name="Главная"
                                component={PostNavigation}
@@ -24,8 +24,7 @@ export const AppNavigation = () => {
                                    drawerIcon: ({focused, size}) => (
                                        <Ionicons name="ios-home"
                                                  size={size}
-                                                 color={focused ? THEME.MAIN_COLOR : '#000'}
-                                       />
+                                                 color={focused ? THEME.MAIN_COLOR : '#000'}/>
                                    ),
                                }}/>
 
@@ -35,8 +34,7 @@ export const AppNavigation = () => {
                                    drawerIcon: ({focused, size}) => (
                                        <Ionicons name="ios-information-circle-sharp"
                                                  size={size}
-                                                 color={focused ? THEME.MAIN_COLOR : '#000'}
-                                       />
+                                                 color={focused ? THEME.MAIN_COLOR : '#000'}/>
                                    ),
                                }}/>
 
@@ -46,8 +44,7 @@ export const AppNavigation = () => {
                                    drawerIcon: ({focused, size}) => (
                                        <Ionicons name="ios-create"
                                                  size={size}
-                                                 color={focused ? THEME.MAIN_COLOR : '#000'}
-                                       />
+                                                 color={focused ? THEME.MAIN_COLOR : '#000'}/>
                                    ),
                                }}/>
             </Drawer.Navigator>

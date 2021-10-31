@@ -5,8 +5,5 @@ import {Platform} from "react-native";
 import {THEME} from "../../theme";
 
 export const AppHeaderIcon = (props) => (
-    <HeaderButton IconComponent={Ionicons}
-                  iconSize={25}
-                  color={Platform.OS === 'android' ? '#fff' : THEME.MAIN_COLOR}
-                  {...props} />
-);
+    <HeaderButton IconComponent={Ionicons} iconSize={25} {...props}
+                  color={Platform.OS === 'android' ? '#fff' : THEME.MAIN_COLOR}/>);

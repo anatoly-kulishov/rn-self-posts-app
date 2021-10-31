@@ -16,7 +16,7 @@ export const MainScreen = ({navigation}) => {
 
     useEffect(() => {
         dispatch(loadPosts())
-    }, [dispatch])
+    }, [])
 
     const dispatch = useDispatch();
     const allPosts = useSelector(state => state.post.allPosts);

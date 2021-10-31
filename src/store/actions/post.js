@@ -1,6 +1,6 @@
 import * as FileSystem from 'expo-file-system'
-import { LOAD_POSTS, TOGGLE_BOOKED, REMOVE_POST, ADD_POST } from '../types'
-import { DB } from '../../db'
+import {LOAD_POSTS, TOGGLE_BOOKED, REMOVE_POST, ADD_POST} from '../types'
+import {DB} from '../../db'
 
 export const loadPosts = () => {
     return async dispatch => {
@@ -43,7 +43,7 @@ export const addPost = post => async dispatch => {
         console.log('Error:', e)
     }
 
-    const payload = { ...post, img: newPath }
+    const payload = {...post, img: newPath}
     const id = await DB.createPost(payload)
 
     payload.id = id

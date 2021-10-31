@@ -18,8 +18,7 @@ export const PostList = ({data = [], onOpen}) => {
             <FlatList
                 data={data}
                 keyExtractor={post => post.id.toString()}
-                renderItem={({item}) => <Post post={item} onOpen={onOpen}/>}
-            />
+                renderItem={({item}) => <Post post={item} onOpen={onOpen}/>}/>
         </View>
     )
 }
